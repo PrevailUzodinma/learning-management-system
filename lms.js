@@ -18,12 +18,11 @@ class User {
   }
 }
 
-class Student extends User{
-    constructor(id, email, password, role, studentName, trackId){
-        super(id, email, password, role);
-        this.studentName = studentName;
-        this.trackId = trackId;
-    }
-
+// INHERITANCE: creating Student Class to inherit the features of the User Class
+class Student extends User {
+  constructor(id, email, password, role, studentName, trackId) {
+    super(id, email, password, role);
+    this.studentName = studentName;
+    this.trackId = trackId;
+  }
 }
-
