@@ -1,19 +1,24 @@
 class User {
-  constructor(id, password, role) {
+  constructor(id, username, email, password, role) {
     this.id = id;
+    this.username = username;
+    this.email = email;
     this.password = password;
     this.role = role;
     this.loginStatus = false;
     this.registerDate = new Date();
   }
 
-  verifylogin(enteredID, enteredPassword) {
-    if (enteredID === this.id && enteredPassword === this.password) {
-      console.log(`Success! Access granted`);
+  verifylogin(enteredEmail, enteredPassword) {
+    if (enteredEmail === this.email && enteredPassword === this.password) {
+      this.loginStatus = true;
+      console.log(
+        `Success! Access granted. \n\nWelcome ${this.username}, happy learning!`
+      );
     } else {
-      {
-        `Incorrect login details! Access denied, please check login details.`;
-      }
+      console.log(
+        `Incorrect login details! Access denied, please check login details.`
+      );
     }
   }
 }
@@ -24,5 +29,9 @@ class Student extends User {
     super(id, email, password, role);
     this.studentName = studentName;
     this.trackId = trackId;
+  }
+
+  login(email, password) {
+    this.verifylogin(email, password);
   }
 }
