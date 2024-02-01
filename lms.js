@@ -1,5 +1,9 @@
 class User {
   constructor(id, username, email, password, role) {
+    /*ABSTRACTION: making USER an Abstract Class*/
+    if (this.constructor === User) {
+      throw new Error("You cannot implement this Class directly");
+    }
     this.id = id;
     this.username = username;
     this.email = email;
@@ -10,11 +14,17 @@ class User {
   }
 
   verifylogin(enteredEmail, enteredPassword) {
+    //making verifylogin an abstract method
+    if (this.verifylogin) {
+      throw new Error("You cannot implement this method directly");
+    }
     if (enteredEmail === this.email && enteredPassword === this.password) {
       this.loginStatus = true;
       console.log(`Login successful! Access granted.`);
     } else {
-      console.log(`Incorrect login details! Access denied, please check login details.`);
+      console.log(
+        `Incorrect login details! Access denied, please check login details.`
+      );
     }
   }
 
@@ -40,7 +50,9 @@ and logout method for Student Class*/
 
   login(email, password) {
     this.verifylogin(email, password);
-    console.log(`\nWelcome to Teachable, ${this.studentName}, happy learning!`);
+    console.log(
+      `\nWelcome to Teachable, ${this.studentName}, happy learning!\n`
+    );
   }
 
   logout() {
@@ -53,9 +65,6 @@ and logout method for Student Class*/
     console.log(`Course subscribed by ${this.studentName}: ${course.title}`);
   }
 
-  /*ENCAPSULATION: wrapping up a bunch of code into a single unit called getCourseDetails to enable you view the details of
-  courses a student has subscribed to */
-  
   getCourseDetails() {
     console.log(`\nLIST OF COURSES ${this.studentName} HAS SUBSCRIBED TO:`);
     for (let course of this.subscribedCourses) {
@@ -87,9 +96,7 @@ class Teacher extends User {
 
   postCourse(course) {
     this.uploadedCourses.push(course);
-    console.log(
-      `Course uploaded by ${this.teacherName}: ${course.title}`
-    );
+    console.log(`Course uploaded by ${this.teacherName}: ${course.title}`);
   }
 }
 
@@ -99,13 +106,6 @@ class Course {
     this.title = title;
   }
 }
-
-
-
-
-
-
-
 
 let mathcourse = new Course("MTH101", "Calculus");
 let englishcourse = new Course("ENG101", "INTRODUCTION TO ENGLISH");
