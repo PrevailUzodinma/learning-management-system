@@ -17,3 +17,13 @@ class User {
     }
   }
 }
+
+class Student extends User{
+    constructor(id, email, password, role, studentName, trackId){
+        super(id, email, password, role);
+        this.studentName = studentName;
+        this.trackId = trackId;
+    }
+
+}
+
